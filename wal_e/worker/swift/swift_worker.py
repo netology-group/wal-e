@@ -29,7 +29,7 @@ class TarPartitionLister(object):
 
         _, object_list = self.swift_conn.get_container(
             self.layout.store_name(),
-            prefix='/' + prefix,
+            prefix=prefix,
             full_listing=True
         )
         for obj in object_list:
@@ -87,7 +87,7 @@ class BackupList(_BackupList):
 
     def _backup_list(self, prefix):
         _, object_list = self.conn.get_container(self.layout.store_name(),
-                                                 prefix='/' + prefix,
+                                                 prefix=prefix,
                                                  full_listing=True)
         return [
             swift.SwiftKey(obj['name'], obj['bytes'], obj['last_modified'])
@@ -110,7 +110,7 @@ class DeleteFromContext(_DeleteFromContext):
 
     def _backup_list(self, prefix):
         _, object_list = self.conn.get_container(self.layout.store_name(),
-                                                 prefix='/' + prefix,
+                                                 prefix=prefix,
                                                  full_listing=True)
         return [
             swift.SwiftKey(obj['name'], obj['bytes'], obj['last_modified'])
